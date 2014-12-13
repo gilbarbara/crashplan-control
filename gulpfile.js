@@ -2,6 +2,7 @@
 var gulp = require('gulp');
 var zip = require('gulp-zip');
 var clean = require('gulp-clean');
+var del = require('del');
 
 var name = 'CrashPlanControl.alfredworkflow'
 
@@ -20,15 +21,15 @@ gulp.task('images', function () {
 		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('build', function () {
+gulp.task('build', ['info', 'scripts', 'images'], function () {
 	return gulp.src('dist/*')
 		.pipe(zip(name))
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('clean', function () {
-	return gulp.src('dist', { read: false })
-        .pipe(clean());
+gulp.task('clean', function (cb) {
+
+	return del(['dist/*', 'CrashPlanControl.alfredworkflow'], cb);
 });
 
-gulp.task('default', ['info', 'scripts', 'images', 'build']);
+gulp.task('default', ['clean', 'build']);
