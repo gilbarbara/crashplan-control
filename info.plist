@@ -49,18 +49,9 @@
 				<key>escaping</key>
 				<integer>126</integer>
 				<key>keyword</key>
-				<string>crash</string>
+				<string>cp</string>
 				<key>script</key>
-				<string>. workflowHandler.sh
-
-# create feedback entries
-# addResult "uid" "arg" "title" "subtitle" "icon" "valid" "autocomplete"
-addResult "start" "start" "Start CrashPlan" "" "icon-start.png" "yes" "autocomplete"
-
-addResult "stop" "stop" "Stop CrashPlan" "" "icon-stop.png" "yes" "autocomplete"
-
-# get feedback xml
-getXMLResults</string>
+				<string>. options.sh</string>
 				<key>subtext</key>
 				<string>start | stop | restart</string>
 				<key>title</key>
