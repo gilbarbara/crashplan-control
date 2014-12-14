@@ -1,10 +1,14 @@
 /* jshint ignore:start */
 var gulp = require('gulp');
-var zip = require('gulp-zip');
-var clean = require('gulp-clean');
+var $ = require('gulp-load-plugins')();
 var del = require('del');
 
-var name = 'CrashPlanControl.alfredworkflow'
+var name = 'CrashPlanControl.alfredworkflow';
+
+gulp.on('err', function (e) {
+	$.util.log('Build failed: ', $.util.colors.red(e.err.message));
+	process.exit(1);
+});
 
 gulp.task('info', function () {
 	return gulp.src('info.plist')
@@ -23,13 +27,19 @@ gulp.task('images', function () {
 
 gulp.task('build', ['info', 'scripts', 'images'], function () {
 	return gulp.src('dist/*')
-		.pipe(zip(name))
+		.pipe($.zip(name))
 		.pipe(gulp.dest('./'));
 });
 
 gulp.task('clean', function (cb) {
-
 	return del(['dist/*', 'CrashPlanControl.alfredworkflow'], cb);
 });
 
-gulp.task('default', ['clean', 'build']);
+gulp.task('hooks', function () {
+	del('.git/hooks/pre-commit');
+	return gulp.src('.pre-commit')
+		.pipe($.symlink('.git/hooks/pre-commit', { log: false }))
+
+});
+
+gulp.task('default', ['hooks', 'clean', 'build']);

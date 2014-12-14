@@ -1,23 +1,30 @@
 {
+  "name": "crashplan-control",
+  "description": "Control CrashPlan service",
+  "version": "1.0.0",
   "homepage": "https://github.com/gilbarbara/crashplan-control",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gilbarbara/crashplan-control.git"
+  },
   "author": {
     "name": "Gil Barbara",
     "email": "gilbarbara@gmail.com",
     "url": "https://github.com/gilbarbara"
   },
-  "licenses": [
-    {
-      "type": "BSD"
-    }
-  ],
-  "name": "crashplan-control",
-  "description": "Control CrashPlan service",
-  "version": "1.0.0",
   "devDependencies": {
     "del": "^1.1.0",
+    "ghooks": "^0.2.2",
     "gulp": "^3.8.10",
     "gulp-clean": "^0.3.1",
-    "gulp-zip": "^2.0.2",
-    "merge-stream": "^0.1.6"
-  }
+    "gulp-load-plugins": "^0.8.0",
+    "gulp-symlink": "^2.1.0",
+    "gulp-util": "^3.0.1",
+    "gulp-zip": "^2.0.2"
+  },
+  "licenses": [
+    {
+      "type": "Unlicense"
+    }
+  ]
 }
